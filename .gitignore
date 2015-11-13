@@ -1,0 +1,17 @@
+*.toc
+*.aux
+*.run
+*.out
+*.bbl
+*.cfg
+*.log
+*.swp
+*.bcf
+*.blg
+*.pdf
+*.tdo
+*.lof
+*.synctex.gz
+main-blx.bib
+*.run.xml
+.directory
