@@ -1,7 +1,23 @@
-Make Measurement Report from sources
+HS Offenburg Latex Template
 =====================================
 
-1. Requirements
+1 How to
+=====================================
+On Linux based machine use:
+
+1.1 Check your latex configuration 
+=====================================
+sudo ./make_tex.py -c 
+    
+1.1 Make a pdf 
+=====================================
+./make_tex.py -p yourfile.tex
+
+
+
+
+
+3 Requirements (old)
 =====================================
 On a Debian machine the following is needed:
 
@@ -13,7 +29,7 @@ On a Debian machine the following is needed:
    run:
    # apt-get install make
 
-2. How to build
+4 How to build (old)
 =====================================
 
 1) Preperations for first start
