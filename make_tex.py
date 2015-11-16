@@ -9,9 +9,10 @@ import os.path
 
 def main(argv): 
     pdf = ''
+    beamer = ''
     
     try:
-        opts, args = getopt.getopt(argv,"hcp:",["pdf="])
+        opts, args = getopt.getopt(argv,"hcp:b:",["pdf=","beamer="])
     except getopt.GetoptError:
         print 'Error'
         sys.exit(2)
@@ -34,6 +35,10 @@ def main(argv):
             subprocess.call(['biber',name])
             subprocess.call(['pdflatex',name])
             subprocess.call(['pdflatex',name])
+        elif opt in ("-b","beamer"):
+            name = arg
+            subprocess.call(['pdflatex',name],cwd='presentation/')
+            subprocess.call(['pdflatex',name],cwd='presentation/')
 
 
 def fileexists(path):
