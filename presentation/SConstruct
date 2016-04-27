@@ -1,0 +1,6 @@
+#!python
+import os
+
+env = Environment(ENV=os.environ)
+pdf_output = env.PDF(target='beamer.pdf',source='beamer.tex')
+env.Precious(pdf_output)

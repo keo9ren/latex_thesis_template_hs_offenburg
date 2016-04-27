@@ -1,0 +1,108 @@
+\DeclareOptionBeamer{height}{\PassOptionsToPackage{height=#1}{beamerouterthemesidebar}}
+\ProcessOptionsBeamer
+
+\mode<presentation>
+
+\usepackage[ngerman, num]{isodate}%For date
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\monthyearsepgerman{}{}
+
+
+\usepackage{appendixnumberbeamer}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{textcomp}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\RequirePackage[overlay,absolute]{textpos}
+
+\setlength{\TPHorizModule}{0.1\paperwidth} % Horizontale Einheit
+\setlength{\TPVertModule}{0.1\paperheight} % Vertikale Einheit
+
+\useinnertheme{rectangles}
+
+\RequirePackage{graphicx}
+
+\definecolor{hsogeiRed}{cmyk}{0,1,1,0}
+\definecolor{hsogeiGray}{cmyk}{0,0,0,0.6}
+\definecolor{hsogeiLightGray}{cmyk}{0,0,0,.08}
+\definecolor{hsogeiSilver}{cmyk}{.38,.27,.26,.09}
+\definecolor{hsogeiBlue}{cmyk}{1,0.5,0,0.55}
+\definecolor{hsogeiBlue75}{cmyk}{.75,.35,0,.4}
+\definecolor{hsogeiBlue50}{cmyk}{.5,.2,0,.25}
+\definecolor{hsogeiBlue25}{cmyk}{0.25,0.08,0,0.15}
+
+\usecolortheme{orchid}
+
+\setbeamercolor{structure}{fg=hsogeiBlue}
+\setbeamercolor{example text}{fg=hsogeiBlue}
+\setbeamercolor{alerted text}{fg=hsogeiRed}
+\setbeamercolor{footlinecolor}{fg=hsogeiBlue,bg=white}
+\setbeamercolor{headlinecolor}{fg=white,bg=hsogeiBlue}
+
+\setbeamercolor{block title example}{fg=white,bg=hsogeiBlue}
+\setbeamercolor{block body example}{parent=normal text,bg=hsogeiBlue25!50}
+
+\setbeamercolor{subsection in toc}{use=structure,fg=structure.fg}
+
+\setbeamertemplate{footline}{%
+\hbox{%
+\begin{beamercolorbox}[wd=1.0\paperwidth,ht=0.25ex,right,rightskip=2ex]{headlinecolor}%
+    \vbox to7.25ex{\vfil\hbox{\insertframenumber{} / \inserttotalframenumber}\vfil}%
+\end{beamercolorbox}}%
+\hbox{%
+\begin{beamercolorbox}[wd=.20\paperwidth,ht=7.25ex,left,leftskip=2ex]{footlinecolor}%
+    \vbox to7.25ex{\vfil\hbox{\usebeamerfont{date in head/foot}\insertshortdate{}}\vfil}%
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.60\paperwidth,ht=7.25ex,center]{footlinecolor}%
+    \vbox to7.25ex{\vfil\hbox{\usebeamerfont{title in head/foot}\insertshorttitle{} - \insertshortauthor}\vfil}%
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=.20\paperwidth,ht=7.25ex,right,rightskip=2ex]{footlinecolor}%
+    \vbox to7.25ex{\vfil\hbox{\insertframenumber{} / \inserttotalframenumber}\vfil}%
+\end{beamercolorbox}}%
+}
+\setbeamertemplate{headline}{%
+\hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,dp=.03\paperheight,ht=8.25ex,left,leftskip=2ex]{footlinecolor}
+      \hspace{0.5cm}\fontsize{12}{12}\selectfont\textbf{
+				\ifx\insertsubsection\empty\insertsection\else\insertsection{} \textendash{} \insertsubsection\fi}
+	\end{beamercolorbox}
+\begin{beamercolorbox}[wd=.5\paperwidth,ht=8.25ex,right,rightskip=2ex,dp=.03\paperheight]{footlinecolor}%
+    %\vbox to0.19\paperheight{\vfill\hbox{\includegraphics[height= 0.09\paperheight]{figures/titlepage_fig/logo_ivesk_blau.pdf}}} 
+    %\vbox to0.19\paperheight{\vfill\hbox{\includegraphics[height= 0.04\paperheight]{figures/titlepage_fig/hs_offenburg.pdf}}}
+  \vbox to0.19\paperheight{\vfill\hbox{\includegraphics[height=
+      0.06\paperheight,clip, trim=0 2cm 0cm 2cm]{figures/titlepage_fig/logo_ivesk_blau.pdf}}}
+  \vbox to0.19\paperheight{\vfill\hbox{\includegraphics[height= 0.04\paperheight, clip, trim=0 0 6cm 0]{figures/titlepage_fig/hs_og_ei.pdf}}} 
+  \vbox to0.19\paperheight{\vfill\hbox{\includegraphics[height= 0.04\paperheight]{figures/titlepage_fig/hs_offenburg.pdf}}}
+\end{beamercolorbox}}%
+
+\hbox{%
+\begin{beamercolorbox}[wd=1.0\paperwidth,ht=0.25ex,right,rightskip=2ex]{headlinecolor}%
+\end{beamercolorbox}}%
+}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{block title}{size={}}
+%\setbeamerfont{title page}{size=\huge}
+
+\setbeamertemplate{title page}{
+    \centering
+    \vspace{1ex}
+    \textbf{\LARGE\inserttitle{}\normalsize}
+    \vspace{10ex}
+    \linebreak
+    \textcolor{hsogeiBlue}{\mytitle\myauthor\xspace(EIM)\\}%{\insertshortauthor}
+    \textcolor{hsogeiBlue}{Prof. Dr.-Ing. Axel Sikora\\}%{\insertshortauthor}
+    \textcolor{hsogeiBlue}{Dipl.-Phys. Andreas Walz}%{\insertshortauthor}
+    \vspace{2ex}
+    \linebreak
+    \textcolor{hsogeiGray}{\myinstitute\\\myuniversity}
+    \vspace{3ex}
+    \linebreak
+    \insertshortdate{}\linebreak
+    
+}
+
+\mode
+<all>
