@@ -1,12 +1,12 @@
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %
 %          ToDo :  !!! important !!! on debian based systems you have to install
-%                  biber with sudo apt-get install biber for the bibliography or use 
-%                  bibtex instead but biber/biblatex has utf8 support per default
-%                  in near future an install script will be provided
+%                  biber with sudo apt-get install biber for the bibliography or
+%                  use bibtex instead but biber/biblatex has utf8 support per
+%                  default 
 %       Filename:  main.tex
 %
-%   Description:  Thesis Template HS Offenburg
+%    Description:  Thesis Template  
 %
 %        Version:  1.0
 %        Created:  25.08.2015
@@ -18,91 +18,104 @@
 %
 %          Notes:  Inspired by Andreas Walz, Tobias Neff and Karl Voith
 %                
-%_____________________________________________________________________________________
-%for search with vim and okular 
-\synctex=1
+%-------------------------------------------------------------------------------
 \input{template/macros}
-%________________________________________________________________________________________
-%  preamble
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
+% preamble
+%-------------------------------------------------------------------------------
 \input{template/preamble}
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %  TODO: Enable/Disable
-%________________________________________________________________________________________
-\setboolean{myaddlistoftodos}{true}  %% "true" or "false"
+%-------------------------------------------------------------------------------
+\setboolean{myaddlistoftodos}{false}  %% "true" or "false"
 % If set to "true": the current list of open todos is added after the
 % table of contents. If \mytodonotesoptions is set to "disable", no
 % list of todos is added, independent of this setting here.
 
 
-% example for language = english
+% example for english
 %\hypthenation{ex-am-ple hy-phen-ate}
 
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	\begin{document}
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 \begin{document}
 
-\frontmatter %KOMA: roman page numbers and such; only available in scrbook
-
+\frontmatter %% KOMA: roman page numbers and such; only available in scrbook
+%\KOMAoptions{twoside=false}
 \input{template/mytitlepage}
-%% Statutory Declaration __ For Bachelor or Master thesis 
+\cleardoublepage
+%\KOMAoptions{twoside=true}
+%% Statutory Declaration -- For Bachelor or Master thesis 
 %% have to follow the titlepage
-%%\input{template/declaration} 
+\input{template/declaration}  
 
 
 \cleardoublepage
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	Abstract
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 
-%tbd
-%\include{chapter/abstract}
+\include{chapter/abstract}
 \clearpage
 
 
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	List of Contents/Figures/Tables
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 
 \tableofcontents
 
 \listoffigures
+%\addcontentsline{toc}{chapter}{\listfigurename}
 
-%\listoftables
+\listoftables
+%\addcontentsline{toc}{chapter}{\listtablename}
 
-\ifthenelse{\boolean{myaddlistoftodos}}{
-  \newpage\todototoc \listoftodos          %% handy if you are using todonotes with \todo{}
-}{}                             %% with todonotes-package option "disable" you can get rid of any todo in the output
+\lstlistoflistings % Prints the list of code listings.
+%\addcontentsline{toc}{chapter}{\lstlistoflistingsname}
+\cleardoublepage
 
+\chapter*{List of Abbreviations}
+%\addcontentsline{toc}{chapter}{\listofabbreviationsname}
 
-%________________________________________________________________________________________
+\begin{acronym}[XXXXXX]
+\input{template/acronyms}
+\end{acronym}
+
+\cleardoublepage
+%\ifthenelse{\boolean{myaddlistoftodos}}{
+%  \newpage\todototoc \listoftodos          
+%}{} % handy if you are using todonotes with \todo{}
+% with todonotes-package option "disable" you can get rid
+% of any todo in the output
+
+%-------------------------------------------------------------------------------
 %	Body
-%________________________________________________________________________________________
-\mainmatter  %% KOMA: marks main part using arabic page numbers and such; only available in book-classes 
+%-------------------------------------------------------------------------------
+\mainmatter   % KOMA: marks main part using arabic page numbers and such
+              % only available in book-classes 
 
-% you have to create your chapter file here
-\include{chapter/template}
+\todo[inline]{include chapters here}
+\include{chapter/introduction}
+%...
 
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	Bibliography
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 
-%% prints every entry of the bib file __ useful in a state where is no cite
-\appendix
-\nocite{*}
+%% prints every entry of the bib file -- useful in a state where is no cite
+%\nocite{*}
 \printbibliography
 
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	Appendix
-%________________________________________________________________________________________
-%% add possible appendix 
-%%\appendix
-%%\addpart*{Appendix}
-%%\input{chapter/appendices.tex}
+%-------------------------------------------------------------------------------
+% add possible appendix 
+\appendix
+\addpart{Appendix}
 
-%________________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %	\end{document}
-%________________________________________________________________________________________
-\end{document}  
-\grid
+%-------------------------------------------------------------------------------
+\end{document}
