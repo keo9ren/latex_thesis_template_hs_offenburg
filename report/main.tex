@@ -1,23 +1,21 @@
 %-------------------------------------------------------------------------------
 %
-%          ToDo :  !!! important !!! on debian based systems you have to install
-%                  biber with sudo apt-get install biber for the bibliography or
-%                  use bibtex instead but biber/biblatex has utf8 support per
-%                  default 
 %       Filename:  main.tex
 %
-%    Description:  Thesis Template  
+%    Description:  The main file for the new ivESK latex template  
 %
-%        Version:  1.0
-%        Created:  25.08.2015
+%        Version:  0.1
+%        Created:  28.04.2016
 %       Revision:  none
 %
-%         Author:  B.Eng. Oliver Kehret, okehret@stud.hs-offenburg.de
-%   Organization:  HS Offenburg, Offenburg, Germany
-%      Copyright:  Copyright (c) 2015, B.Eng. Oliver Kehret
+%         Author:  M.Sc. Oliver Kehret, oliver.kehret@hs-offenburg.de
+%   Organization:  ivESK, Offenburg Universtiy, Germany
+%      Copyright:  Copyright (c) 2016, M.Sc. Oliver Kehret
 %
-%          Notes:  Inspired by Andreas Walz, Tobias Neff and Karl Voith
-%                
+%-------------------------------------------------------------------------------
+% 
+%-------------------------------------------------------------------------------
+% 
 %-------------------------------------------------------------------------------
 \input{template/macros}
 %-------------------------------------------------------------------------------
@@ -25,14 +23,16 @@
 %-------------------------------------------------------------------------------
 \input{template/preamble}
 %-------------------------------------------------------------------------------
+%-------------------------------------------------------------------------------
 %  TODO: Enable/Disable
 %-------------------------------------------------------------------------------
-\setboolean{myaddlistoftodos}{false}  %% "true" or "false"
+\setboolean{report}{true} % if true onepage arabic numbering if false thesis
+                          % layout 
+\setboolean{ngerman}{false} % if true german; false american language
+\setboolean{myaddlistoftodos}{true}  %% "true" or "false"
 % If set to "true": the current list of open todos is added after the
 % table of contents. If \mytodonotesoptions is set to "disable", no
 % list of todos is added, independent of this setting here.
-
-
 % example for english
 %\hypthenation{ex-am-ple hy-phen-ate}
 
@@ -40,65 +40,83 @@
 %	\begin{document}
 %-------------------------------------------------------------------------------
 \begin{document}
-
-\frontmatter %% KOMA: roman page numbers and such; only available in scrbook
-%\KOMAoptions{twoside=false}
-\input{template/mytitlepage}
+%-------------------------------------------------------------------------------
+\ifthenelse{\boolean{report}}%if
+{}%then
+{\frontmatter}%KOMA: roman page numbers and such; only available in scrbook
+%-------------------------------------------------------------------------------
+\ifthenelse{\boolean{report}}%if
+{\input{template/report_title.tex}}%then
+{\input{template/mytitlepage}}
 \cleardoublepage
-%\KOMAoptions{twoside=true}
-%% Statutory Declaration -- For Bachelor or Master thesis 
-%% have to follow the titlepage
-\input{template/declaration}  
-
-
+%-------------------------------------------------------------------------------
+\ifthenelse{\boolean{report}}%if
+{\setcounter{page}{1}}%then
+{}%KOMA: roman page numbers and such; only available in scrbook
+%-------------------------------------------------------------------------------
+\ifthenelse{\boolean{report}}%if
+{}%then
+{\input{template/declaration}}% Statutory Declaration
 \cleardoublepage
 %-------------------------------------------------------------------------------
 %	Abstract
 %-------------------------------------------------------------------------------
-
-\include{chapter/abstract}
-\clearpage
-
-
+\ifthenelse{\boolean{report}}%if
+{}%then
+{\include{chapter/abstract}\clearpage}% abstract
 %-------------------------------------------------------------------------------
-%	List of Contents/Figures/Tables
+%	History
 %-------------------------------------------------------------------------------
-
-\tableofcontents
-
-\listoffigures
-%\addcontentsline{toc}{chapter}{\listfigurename}
-
-\listoftables
-%\addcontentsline{toc}{chapter}{\listtablename}
-
-\lstlistoflistings % Prints the list of code listings.
-%\addcontentsline{toc}{chapter}{\lstlistoflistingsname}
-\cleardoublepage
-
+\ifthenelse{\boolean{report}}%if
+{\include{template/history}}% History
+{}% 
+%-------------------------------------------------------------------------------
+% List of Abbreviations
+%-------------------------------------------------------------------------------
 \chapter*{List of Abbreviations}
-%\addcontentsline{toc}{chapter}{\listofabbreviationsname}
-
+\addcontentsline{toc}{chapter}{List of Abbreviations}
 \begin{acronym}[XXXXXX]
 \input{template/acronyms}
 \end{acronym}
-
-\cleardoublepage
-%\ifthenelse{\boolean{myaddlistoftodos}}{
-%  \newpage\todototoc \listoftodos          
-%}{} % handy if you are using todonotes with \todo{}
-% with todonotes-package option "disable" you can get rid
-% of any todo in the output
+%-------------------------------------------------------------------------------
+%	Table of contents
+%-------------------------------------------------------------------------------
+\KOMAoptions{toc=chapterentrydotfill}
+\tableofcontents
+%-------------------------------------------------------------------------------
+%	List of ...
+%-------------------------------------------------------------------------------
+\listoffigures
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoftables
+\addcontentsline{toc}{chapter}{\listtablename}
+% TODO: make robust against language changes
+\lstlistoflistings 
+\addcontentsline{toc}{chapter}{List of Listings}
+\ifthenelse{\boolean{myaddlistoftodos}}
+{\newpage\todototoc \listoftodos}{} 
 
 %-------------------------------------------------------------------------------
 %	Body
 %-------------------------------------------------------------------------------
-\mainmatter   % KOMA: marks main part using arabic page numbers and such
-              % only available in book-classes 
+\ifthenelse{\boolean{report}}%if
+{}%then
+{\mainmatter}%KOMA: roman page numbers and such; only available in scrbook
 
 \todo[inline]{include chapters here}
-\include{chapter/introduction}
-%...
+
+\chapter{Chapter}
+\lipsum \ac{ivESK} \ac{TLS}
+\section{section}
+\lipsum
+\subsection{subsection}
+\lipsum
+\subsubsection{subsubsection}
+\lipsum
+\chapter{Chapter}
+\lipsum
+\chapter{Chapter}
+\lipsum
 
 %-------------------------------------------------------------------------------
 %	Bibliography

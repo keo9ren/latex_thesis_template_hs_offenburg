@@ -1,4 +1,4 @@
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %
 %       Filename:  preamble.tex
 %
@@ -14,97 +14,141 @@
 %
 %          Notes:  Inspired by Andreas Walz, Tobias Neff and Karl Voith
 %                
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
 \documentclass[%
     fontsize=\myfontsize,
 	paper=\mypapersize,
 	parskip=\myparskip,
-	DIV=calc,
+	DIV=24,%calc
 	headinclude=true,		
 	footinclude=true,
 	open=right,
-	appendixprefix=true,	% include appendix?
-	bibliography=totoc,		% include an unnumbered unit of bibliography to the table of contents
-	BCOR=\myBCOR,        	% binding correction (depends on how you bind
-	                     	% the resulting printout.
-	\mylaterality,          % alternative: twoside
-    \mylanguage
+	appendixprefix=true,% include appendix?
+	bibliography=totoc,% include an unnumbered unit of bibliography to the table
+                       % of contents 
+	BCOR=\myBCOR,% binding correction (depends on how you bind
+	             % the resulting printout.
+	\mylaterality,% alternative: twoside
+    \mylanguage,
+    plainheadsepline=true,
+    plainfootsepline=true, 
 ]{scrbook}
-
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
+% ifthen 
+%-------------------------------------------------------------------------------
+\usepackage{ifthen}                                         
+% pre-define ifthen-boolean variables:
+\newboolean{report}
+\newboolean{ngerman}
+\newboolean{myaddcolophon}
+\newboolean{myaddlistoftodos}
+%
+%-------------------------------------------------------------------------------
 % General presentation
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % full utf8 character set
 \usepackage[utf8]{inputenc}
 % language adaptions, change in main.tex (english, ngerman, american)
 \usepackage[\mylanguage]{babel}									
+\usepackage{lmodern}
 % encode characters better, so that they can be copied out of .pdf in one piece
 \usepackage[T1]{fontenc}    
 % nicer quotes  
+%
 \usepackage[%
             autostyle,          % adapts language setting
             strict,             % turns warnings into errors 
             english=american    % use american quotes style
 ]{csquotes}
+%% todo find solution to use \mylanguage  here
 
-%_____________________________________________________________________________________
-% Style and Embedded-Lab-look-alike
-%_____________________________________________________________________________________
-\usepackage[automark]{scrpage2}							% allows usage of header and footer		
-\usepackage[perpage, hang]{footmisc} 						% footnote options
-% perpage: Nummerierung der Fußnoten auf jeder Seite neu beginnen
-% hang: Fußnote über mehrere zeilen richtig einrücken
-
-%_____________________________________________________________________________________
-% includes pictures --> possible to include them in header/footer
-%_____________________________________________________________________________________
-\usepackage[pdftex]{graphicx}										
+\usepackage[\mylinespread]{setspace}
 
 
-
-%_____________________________________________________________________________________
-% Style and Embedded-Lab-look-alike Part 2
-%_____________________________________________________________________________________
-%% includes some colors
+%-------------------------------------------------------------------------------
+% Color definitions
+%-------------------------------------------------------------------------------
 \usepackage[table,usenames,dvipsnames]{xcolor}		
 \definecolor{DispositionColor}{RGB}{\mydispositioncolor}							
 \definecolor{light-gray}{gray}{0.95}	% define some colors
 \definecolor{dark-green}{rgb}{0,0.6,0}
-\renewcommand{\headfont}{\normalfont\sffamily\color{DispositionColor}}
-\renewcommand{\pnumfont}{\normalfont\sffamily\color{DispositionColor}}
-\addtokomafont{disposition}{\color{DispositionColor}}
-\addtokomafont{caption}{\color{DispositionColor}\footnotesize}
-\addtokomafont{captionlabel}{\color{DispositionColor}}
-% used for calculation of header footer etc. ...
+\definecolor{iveskblue}{RGB}{0,63,97}
+%-------------------------------------------------------------------------------
+% length definitions
+%-------------------------------------------------------------------------------
 \usepackage{calc}											
-% change page layout
-% ftp://ftp.fu-berlin.de/tex/CTAN/macros/latex/contrib/geometry/geometry.pdf
-\addtolength{\oddsidemargin}{-.875in}
-\addtolength{\evensidemargin}{-.875in}
-\addtolength{\textwidth}{1.75in}
-\addtolength{\topmargin}{-.875in}
-\addtolength{\textheight}{3in}  %1.75
-% header and footer
-\pagestyle{scrheadings}							% for customization for header and footer
-\renewcommand{\chapterpagestyle}{scrheadings}	% include header and footer on chapter pages
-\clearscrheadfoot
+%\addtolength{\oddsidemargin}{-.875in}
+%\addtolength{\evensidemargin}{-.875in}
+%\addtolength{\textwidth}{1.75in}
+%\addtolength{\topmargin}{-.875in}
+%\addtolength{\textheight}{3in}  %1.75
 
-% http://ctan.uib.no/macros/latex/contrib/koma-script/doc/scrguien.pdf
-% page 204
-\ifoot{\vspace{-0.25cm}\mytitle~\myauthor}
-\ofoot{ \vspace{-0.25cm} \thepage}
-\automark{chapter}
-\setheadsepline[ \textwidth + 5pt ]{1pt} % seperation line for header...
-\setfootsepline[ \textwidth + 5pt ]{1pt} % ... and footer
-\setkomafont{footsepline}{\color{red}} 	 % change colors of seperation lines
-\setkomafont{headsepline}{\color{red}}
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
+% ivESK style
+%
+%-------------------------------------------------------------------------------
+%\usepackage[automark]{scrpage2}% allows usage of header and footer --replaced		
+\usepackage{scrlayer-scrpage}
+\pagestyle{plain.scrheadings}% or scrheadings
+\clearscrheadfoot
+\lohead*{\mytitle\myversion}
+\lofoot*{\myuniversity\myinstitute}
+\usepackage{lastpage}
+\rofoot*{Page \thepage~of~\pageref{LastPage}}
+\setheadsepline[ \textwidth ]{1pt} % seperation line for header...
+\setfootsepline[ \textwidth ]{1pt} % ... and footer
+\setkomafont{footsepline}{\color{iveskblue}}% change colors of seperation lines
+\setkomafont{headsepline}{\color{iveskblue}}
+%% includes some colors
+%\renewcommand{\headfont}{\normalfont\sffamily\color{DispositionColor}}
+%\renewcommand{\pnumfont}{\normalfont\sffamily\color{DispositionColor}}
+%\addtokomafont{disposition}{\color{DispositionColor}}
+%\addtokomafont{caption}{\color{DispositionColor}\footnotesize}
+%\addtokomafont{captionlabel}{\color{DispositionColor}}
+% used for calculation of header footer etc. ...
+% header and footer
+%\renewcommand{\chapterpagestyle}{scrheadings}% include header and footer on
+                                % chapter pages 
+%legacy
+%\automark{chapter}
+%\ifoot{\vspace{-0.25cm}\mytitle~\myauthor}
+%\ofoot{ \vspace{-0.25cm} \thepage}
+
+%
+%-------------------------------------------------------------------------------
+% includes pictures --> possible to include them in header/footer
+%-------------------------------------------------------------------------------
+%
+\usepackage[pdftex]{graphicx}										
+%-------------------------------------------------------------------------------
+% footnotes
+%-------------------------------------------------------------------------------
+\usepackage[perpage, hang]{footmisc}% footnote options
+%perpage: Nummerierung der Fußnoten auf jeder Seite neu beginnen
+%hang: Fußnote über mehrere zeilen richtig einrücken
+
+%-------------------------------------------------------------------------------
+% placeins \FloatBarrier forces places of floats
+%-------------------------------------------------------------------------------
+\usepackage[verbose, %
+section,% force for section automatically
+]
+{placeins}										
+
+
+%
+%-------------------------------------------------------------------------------
 % bibliography with biber/biblatex
-%_____________________________________________________________________________________
-\usepackage[backend=biber, % using "biber" to compile references (instead of "biblatex")
+%
+%-------------------------------------------------------------------------------
+\usepackage[backend=biber, % using "biber" to compile references (instead of
+                           % "biblatex") 
 style=\mybiblatexstyle, % see biblatex documentation
 style=alphabetic, % see biblatex documentation
-%dashed=\mybiblatexdashed, % do *not* replace recurring reference authors with a dash
+%dashed=\mybiblatexdashed, % do *not* replace recurring reference authors with a
+%dash 
 backref=\mybiblatexbackref, % create backlings from references to citations
 natbib=true, % offering natbib-compatible commands
 hyperref=true,
@@ -112,31 +156,36 @@ sorting=none, % using hyperref-package references
 ]{biblatex}  % remove, if using BibTeX instead of biblatex
 \addbibresource{\mybiblatexfile} % remove, if using BibTeX instead of biblatex
 
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % Selection of useful packages
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
 %
-%_____________________________________________________________________________________
+%
+%
+%-------------------------------------------------------------------------------
 % SIUNITSX -- simplified usage of SI-units
-%_____________________________________________________________________________________
-\usepackage[% 
-            exponent-product = \cdot % use \cdot instead * for exponent product
-]{siunitx}	              
-%_____________________________________________________________________________________
-% ifthen and todonotes puts to-do-notes in the printed document if you want 
-%_____________________________________________________________________________________
-% used to disable todonotes package
-\usepackage{ifthen}                                         
-% pre-define ifthen-boolean variables:
-\newboolean{myaddcolophon}
-\newboolean{myaddlistoftodos}
+%-------------------------------------------------------------------------------
 %
-% currently american is not supported by todonotes but english is fine as it's only
-% effects todonotes and missingfigures
+\usepackage[% 
+            exponent-product=\cdot,% use \cdot instead * for exponent product
+            binary-units=true,%
+            load-configurations=binary,%
+            load-configurations=abbreviations,%
+]{siunitx}	              
+%
+%
+%-------------------------------------------------------------------------------
+% todonotes puts to-do-notes in the printed document if you want 
+%-------------------------------------------------------------------------------
+% currently american is not supported by todonotes but english is fine as it's
+% only effects todonotes and missingfigures
 \usepackage[\mytodonotesoptions,english]{todonotes}
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % Sourcecode printing
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
+%
 \usepackage{listings}				% include source code
 									% ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
 \lstset{% 							% options for representation of source code
@@ -168,18 +217,22 @@ sorting=none, % using hyperref-package references
   %numberbychapter=false
 }
 %\renewcommand\lstlistingname{Quelltext}	% change caption of listings
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % Math 
-%_____________________________________________________________________________________
-\usepackage{amssymb,amstext} % predefiened symbols e.g. \nparallel
+%-------------------------------------------------------------------------------
+%
+\usepackage{amssymb,amstext,amsmath} % predefiened symbols e.g. \nparallel
 \usepackage[%
             fleqn,%equations aligned in a fixed distance from the left
             tbtags, %where the equation number is placed here bottom or top
 ]{mathtools} % loads amsmath package
 
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % Tables, figures etc.
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
+%
 %
 % nice rule's for tables try \toprule \midrule \bottomrule  
 \usepackage{booktabs}
@@ -188,6 +241,9 @@ sorting=none, % using hyperref-package references
 %
 % rotate tables and figures
 \usepackage{rotating}
+
+% rotate tables and figures
+\usepackage{multirow}
 %
 % define caption style
 \addtokomafont{caption}{\small} 	% small captions
@@ -195,12 +251,16 @@ sorting=none, % using hyperref-package references
 %
 %
 \usepackage{subfigure}
-
-%_____________________________________________________________________________________
-% some utility stuff
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
+% list of acronym's
+%-------------------------------------------------------------------------------
+\usepackage[printonlyused]{acronym}
 %
-\usepackage[]{acronym}				% for usage of abbreviations
+%-------------------------------------------------------------------------------
+% some utility stuff
+%
+%-------------------------------------------------------------------------------
+%
 %
 % improved typographical settings
 \usepackage[%
@@ -242,61 +302,105 @@ osf,%
 % \end{itemize}
 \usepackage{framed}
 %
-% For example on title pages you might want to have a logo on the upper right corner of
-% the first page (only). The package \texttt{eso-pic} is able to place things on absolute
-% and relative positions on the whole page.
+% For example on title pages you might want to have a logo on the upper right
+% corner of the first page (only). The package \texttt{eso-pic} is able to place
+% things on absolute and relative positions on the whole page.
 \usepackage{eso-pic} %
 % for what ????
-%\usepackage{lastpage}										% get total number of pages
+%\usepackage{lastpage}			% get total number of pages
 %
+%-------------------------------------------------------------------------------
+% Rename directories with babel package
+%-------------------------------------------------------------------------------
+\addto\captionsamerican{% Replace "american" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
 
-%_____________________________________________________________________________________
-% drawing tikz
-%_____________________________________________________________________________________
 %
-% best way is to draw in different file and include in maindocument as it really slows down
+%-------------------------------------------------------------------------------
+% drawing tikz
+%
+%-------------------------------------------------------------------------------
+%
+% best way is to draw in different file and include in maindocument as it really
+% slows down 
 % include tikz for final release
 
 
-%%_____________________________________________________________________________________
+%%
+%-------------------------------------------------------------------------------
 % Own Colors for header, captions etc.
-%_____________________________________________________________________________________
 %
+%-------------------------------------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,arrows}%
+\tikzstyle{memblock} = [draw, fill=blue!20, rectangle, 
+    minimum height=6em, minimum width=3em]%
+\definecolor{mygray}{cmyk}{0,0,0,0.4}%
+\definecolor{mydarkgray}{cmyk}{0,0,0,0.7}%
+\definecolor{mylightgray}{cmyk}{0,0,0,0.1}%
 
+\usepackage{gnuplot-lua-tikz}
+%-------------------------------------------------------------------------------
+%tikz flow chart
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, 
+    text width=4.25em, text badly centered, node distance=2cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=2.5em, text centered, rounded corners, minimum height=1em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=2cm,
+    minimum height=1em]
+%
+%Plottiing
+%-------------------------------------------------------------------------------
+\usepackage{lipsum}%insert blindtext for testing
+%-------------------------------------------------------------------------------
+\usepackage[num,ngerman]{isodate}% several date options
+%-------------------------------------------------------------------------------
 
-
-
+%-------------------------------------------------------------------------------
+\usepackage{pgfplots}
+\pgfplotsset{compat = newest}
+\pgfkeys{/pgf/number format/use comma,/pgf/number format/set thousands separator
+  = } 
 
 % prevent club & widow penalty
 \clubpenalty10000
 \widowpenalty10000
 \displaywidowpenalty10000
 
-%_____________________________________________________________________________________
+%
+%-------------------------------------------------------------------------------
 % pdfcompresslevel from 0 to 10; std is fine 
-%_____________________________________________________________________________________
+%-------------------------------------------------------------------------------
+%
 \pdfcompresslevel=9 
-%_____________________________________________________________________________________
-% Hyperref should always be the last package added -- 
-%_____________________________________________________________________________________
-\usepackage[%							% enables typesettings for hyperlinks
-	                    				% http://en.wikibooks.org/wiki/LaTeX/Hyperlinks	
+%-------------------------------------------------------------------------------
+%
+% Hyperref should always be the last package added -- no better solution now
+%-------------------------------------------------------------------------------
+\usepackage[%				% enables typesettings for hyperlinks
+	                    	% http://en.wikibooks.org/wiki/LaTeX/Hyperlinks  	
 	pdftitle={\mysubject},%
 	pdfauthor = {\myauthor},%
 	pdfsubject = {\mysubject},%
-    colorlinks={\mycolorlinks},					% removes color frames 
+    colorlinks={\mycolorlinks},% removes color frames 
     pdfcreator={pdfTex},%
     pdfkeywords={\mykeywords},%
     pdftex = true,%
     backref,%
     pagebackref=false, % creates backward references too
-    bookmarks=True, %
-    bookmarksopen=false, % when starting with AcrobatReader, the Bookmarkcolumn is opened
+    bookmarks=false, %
+    bookmarksopen=false, % when starting with AcrobatReader, the Bookmarkcolumn
+                         % is opened 
     pdfpagemode=UseOutlines,% None, UseOutlines, UseThumbs, FullScreen
-    plainpages=false % correct, if pdflatex complains: ``destination with same identifier already exists''
+    plainpages=false % correct, if pdflatex complains: ``destination with same
+                     % identifier already exists'' 
     %pdfpagelabels,
     %
     % colors: https://secure.wikimedia.org/wikibooks/en/wiki/LaTeX/Colors
 	%hidelinks,							% removes color and porder
 	%breaklinks=true,
-]{hyperref}								% should be the last package to be inlcuded!
+]{hyperref}								% should be the last package to be
+                                % inlcuded! 

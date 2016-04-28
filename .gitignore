@@ -13,8 +13,14 @@
 *.pdf
 *.tdo
 *.lof
+*.lot
+*.lol
+*.fls
 *.synctex.gz
 *.dblite
+*#
+*.#*
+*.*~
 main-blx.bib
 *.run.xml
 .directory

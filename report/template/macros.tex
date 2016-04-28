@@ -15,17 +15,16 @@
 %          Notes:  Inspired by Andreas Walz, Tobias Neff and Karl Voith
 %                
 %-------------------------------------------------------------------------------
-
 % Settings
 %-------------------------------------------------------------------------------
 \newcommand{\mypapersize}{A4}
-\newcommand{\mylaterality}{twoside}
+\newcommand{\mylaterality}{oneside}
 % "oneside" or "twoside"
 \newcommand{\mydraft}{false}
 % "true" or "false"
 \newcommand{\myparskip}{half}
 % e.g., "no", "full", "half", ...
-\newcommand{\myBCOR}{30mm}
+\newcommand{\myBCOR}{0mm}
 \newcommand{\myfontsize}{11pt}   
 \newcommand{\mylinespread}{onehalfspacing} 
 % e.g.onehalfspacing, doublespacing, singlespacing
@@ -68,40 +67,43 @@
 % be hidden (including todos).
 %  Document metadata
 % general metadata:
-\newcommand{\myauthor}{<+myauthor+>}  % also used for PDF metadata (hyperref)
-\newcommand{\mytitle}{<+mytitle+>}  % also used for PDF metadata (hyperref)
-\newcommand{\mysubject}{<+mysubject+>}  % also used for PDF metadata (hyperref)
-\newcommand{\mykeywords}{<+mykeywords+>}  % also used for PDF metadata (hyperref)
-% this information is used only for generating the title page:
-\newcommand{\myworktitle}{<+myworktitle+>}  % official type of work like ``Master theses''
-\newcommand{\mygrade}{<+mygrade+>} % title you are getting with this work like ``Master of ...''
-\newcommand{\mystudy}{<+mystudy+>} % your study like ``Arts''
-\newcommand{\myuniversity}{<+myuniversity+>} % your university/school
-\newcommand{\myinstitute}{<+myinstitute+>} % affiliation
-\newcommand{\myinstitutehead}{<+myinstitutehead+>} % head of institute 
-\newcommand{\mysupervisor}{<+mysupervisor+>} % your supervisor
-\newcommand{\myevaluator}{\myinstitutehead} % your evaluator
-\newcommand{\myhomestreet}{<+myhomestreet+>} % your home street (with house number)
-\newcommand{\myhometown}{<+myhometown+>} % your home town
-\newcommand{\myhomepostalnumber}{<+myhomepostalnumber+>} % your postal number of home town
-\newcommand{\mysubmissionmonth}{<+mysubmissionmonth+>} % month you are handing in
-\newcommand{\mysubmissionyear}{<+mysubmissionyear+>} % year you are handing in
-\newcommand{\mysubmissiontown}{\myhometown} % town of handing in (or \myhometown)
-
+%
 %-------------------------------------------------------------------------------
 % formating
 %-------------------------------------------------------------------------------
-
 \newcommand{\clearemptydoublepage}{\clearpage\newpage\thispagestyle{empty}\cleardoublepage}
-
+%
 \newcommand{\CRule}{\rule{0.95\textwidth}{0.5pt}} % New command to make the lines above figure captions
-
-
 %-------------------------------------------------------------------------------
-% names
+%
 %-------------------------------------------------------------------------------
-\newcommand{\myname}{John Doe }
+% ivESK macros
+%-------------------------------------------------------------------------------
+%
+\newcommand{\myauthor}{<+myauthor+>}% create more authors on demand
+\newcommand{\mygrade}{<+mygrade+>} % M.Sc. B.Eng. etc.
+\newcommand{\myversion}{<+myversion+>}
+\newcommand{\myproject}{<+myproject+>}
+\newcommand{\mytitle}{<+mytitle+>}  
+\newcommand{\mysubtitle}{<+mysubtitle+>}
+\newcommand{\mysubject}{<+mysubject+>}  
+\newcommand{\mykeywords}{<+mykeywords+>}
+\newcommand{\mytown}{Offenburg\xspace}
+\newcommand{\myuniversity}{\mytown University of Applied Sciences\xspace}
+\newcommand{\myuniversitystreet}{Badstraße~24\xspace} 
+\newcommand{\myuniversitypostalno}{77652\xspace} 
+\newcommand{\myinstitute}{Institute of reliable Embedded Systems and
+  Communications Electronics\xspace}
+\newcommand{\myinstitutehead}{Prof. Dr.-Ing. Axel Sikora\xspace}
+\newcommand{\mysupervisor}{Prof. Dr.-Ing. Axel Sikora\xspace}
+\newcommand{\hsogmailend}{@hs-offenburg.de\xspace}
+\newcommand{\hsogmailendstud}{@stud.hs-offfenburg.de\xspace}
+%-------------------------------------------------------------------------------
+% new improved commands
+%-------------------------------------------------------------------------------
 \newcommand{\myref}[1]{\ref{#1}\xspace} 
+%-------------------------------------------------------------------------------
+% abbrivations
+%-------------------------------------------------------------------------------
 \newcommand{\eg}{e.g.\xspace} 
 \newcommand{\vv}{vice versa\xspace} 
-%-------------------------------------------------------------------------------

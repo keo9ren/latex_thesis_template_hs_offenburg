@@ -1,0 +1,32 @@
+\chapter*{Authors}
+% not robust against language changes
+\addcontentsline{toc}{chapter}{Authors}
+\label{cha:authors}
+%-------------------------------------------------------------------------------
+\begin{tabular}{l}
+  \myauthor           [\myauthor\hsogmailend]           \\
+  Manuel Schappacher  [manuel.schappacher\hsogmailend]  \\
+  Andreas Walz        [andreas.walz\hsogmailend]        \\
+\end{tabular}
+
+
+
+%-------------------------------------------------------------------------------
+%
+\ifthenelse{\equal{\mylaterality}{oneside}}%if
+{{\let\clearpage\relax \chapter*{History}}}%then
+{{\let\cleardoublepage\relax \chapter*{History}}}% 
+% not robust against language changes
+\addcontentsline{toc}{chapter}{History}
+\label{cha:history}
+\begin{tabular}{llll}
+  Version   & Author(s) & Date   & Summary of changes          \\
+  \midrule\\
+  \num{0.1} & \myauthor & \today & Initial template creation   \\
+  \midrule\\
+  \num{0.2} & \myauthor & \today & Initial template creation   \\
+  \midrule\\
+  \num{0.3} & \myauthor & \today & Initial template creation   \\
+  \midrule\\
+  \num{0.4} & \myauthor & \today & Initial template creation   \\
+\end{tabular}

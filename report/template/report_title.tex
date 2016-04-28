@@ -1,0 +1,57 @@
+%-------------------------------------------------------------------------------
+%
+%       Filename:  report_title.tex
+%
+%    Description:  The title page for the ivESK report template  
+%
+%        Version:  0.1
+%        Created:  28.04.2016
+%       Revision:  none
+%
+%         Author:  M.Sc. Oliver Kehret, oliver.kehret@hs-offenburg.de
+%   Organization:  ivESK, Offenburg Universtiy, Germany
+%      Copyright:  Copyright (c) 2016, M.Sc. Oliver Kehret
+%
+%-------------------------------------------------------------------------------
+%
+\setkomafont{subject}{\normalfont\normalcolor\bfseries\large}
+\titlehead{%
+\begin{minipage}[l]{0.5\textwidth}
+%\fbox{%
+\includegraphics[width=\textwidth]{figures/titlepage_fig/hs_offenburg.pdf}
+%}
+\end{minipage}
+\begin{minipage}[r]{0.5\textwidth}
+%\fbox{%
+\includegraphics[width=\textwidth]{figures/titlepage_fig/logo_ivesk_blau.pdf}
+%}%
+\end{minipage}
+}
+%
+\subject{%
+  \myuniversity\\
+  \myinstitute (ivESK)\\  
+  \rule{\textwidth}{1pt}
+}
+%
+\title{\mysubject\\-}
+%
+\subtitle{\mysubtitle
+}
+%
+\date{%
+}%
+\author{%
+}%
+%
+\publishers{%
+\begin{flushleft}
+\begin{tabular}{ll}
+Project: &  \myproject \\
+Version: &  \myversion \\
+Date:    &  \selectlanguage{ngerman}\today  \\
+\end{tabular}
+\end{flushleft}
+}%
+
+\maketitle
