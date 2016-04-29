@@ -14,32 +14,46 @@ will also work compiled with an arbitrary PdfLatex compiler.
 
 On a debian based os you may want to install using:
 
-1) Basic Latex environment with ngerman package and biber for bibliographie  and
+1. Basic Latex environment with ngerman package and biber for bibliographie  and
 biber for bibliographie.    
    run:
+   ```shell
    # apt-get install texlive-base texlive-lang-ngerman texlive-font-utils biber
-2) Scons build system.
+   ```
+2. Scons build system.
    run:
+   ```shell
    # apt-get install scons
+   ```
    
 1 Report
 =====================================
 This is the official ivESK template for report, thesis and the like. 
-To build,
-   run:
+To build:
+
+   ```shell
    # scons
+   ```
+   
 To clean:
-   run:
+
+   ```shell
    # scons -c
+   ```
 
 
 2 Presentation
 =====================================
 This is the non-official ivESK latex beamer template. 
-To build,
-   run:
+To build:
+
+   ```shell
    # scons
+   ```
+
 To clean:
-   run:
+
+   ```shell
    # scons -c
+   ```
 
