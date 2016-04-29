@@ -1,42 +1,45 @@
-HS Offenburg Latex Template
+ivESK Latex Template
 =====================================
+This is the draft of the latex template used by the institute of reliable
+embedded systems and communications electronics (ivESK).
 
-1 How to
+0 Requirements & Build
 =====================================
-On Linux based machine use:
+In order to build you will need a full [texlive](https://www.tug.org/texlive/)
+or [miktex](https://www.tug.org/texlive/) installation. Depending on the way you
+install latex, you may install [biber](https://www.ctan.org/pkg/biber?lang=de)
+additionally. If you want to use, our preffered build system
+[scons](http://scons.org/) you have to install it to. Otherwise the templates
+will also work compiled with an arbitrary PdfLatex compiler.
 
-1.1 Check your latex configuration 
-=====================================
-sudo ./make_tex.py -c 
-    
-1.1 Make a pdf 
-=====================================
-./make_tex.py -p yourfile.tex
+On a debian based os you may want to install using:
 
-
-
-
-
-3 Requirements (old)
-=====================================
-On a Debian machine the following is needed:
-
-1) Basic Latex environment with ngerman package and biber for bibliographie  and biber for bibliographie. You also will need eps2to which is included in texlive-font-utils to convert logos from eps to pdf. 
+1) Basic Latex environment with ngerman package and biber for bibliographie  and
+biber for bibliographie.    
    run:
    # apt-get install texlive-base texlive-lang-ngerman texlive-font-utils biber
-
-2) Make is required as build system
+2) Scons build system.
    run:
-   # apt-get install make
-
-4 How to build (old)
+   # apt-get install scons
+   
+1 Report
 =====================================
-
-1) Preperations for first start
-    1.1) To convert logos from eps to pdf
-         run:
-         make logo
-
-2) To generate document as pdf
+This is the official ivESK template for report, thesis and the like. 
+To build,
    run:
-   make pdf
+   # scons
+To clean:
+   run:
+   # scons -c
+
+
+2 Presentation
+=====================================
+This is the non-official ivESK latex beamer template. 
+To build,
+   run:
+   # scons
+To clean:
+   run:
+   # scons -c
+
